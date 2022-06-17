@@ -1,0 +1,77 @@
+﻿<UserControl x:Class="project.MVVM.View.ItemsInRentView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:project.MVVM.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+            <TextBlock Text="Сортировка заказов по статусу:" 
+                       Foreground="#00BFFF" FontSize="20" Margin="15 0 0 0"/>
+            <ComboBox Margin="15 0 0 0" Name="ComboBoxSortOrders" VerticalContentAlignment="Center">
+                <ComboBoxItem Content="Все" Name="SelectedAll" Selected="SelectedAll_Selected"/>
+                <ComboBoxItem Content="Ожидание" Name="SelectedWaiting" Selected="SelectedWaiting_Selected"/>
+                <ComboBoxItem Content="В аренде" Name="SelectedInArend" Selected="SelectedInArend_Selected"/>
+                <ComboBoxItem Content="Ожидание на возврат" Name="SelecyedInReturn" Selected="SelecyedInReturn_Selected"/>
+                <ComboBoxItem Content="Возвращено" Name="SelectedReturned" Selected="SelectedReturned_Selected"/>
+            </ComboBox>
+        </StackPanel>
+
+        <ListView Name="OrdersList" Background="Transparent"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                  HorizontalAlignment="Center" Grid.Row="1"
+                  BorderThickness="0" SelectionMode="Single"
+                  MouseDoubleClick="OrdersList_MouseDoubleClick">
+
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Vertical" 
+                               HorizontalAlignment="Center"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="20" Height="15">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="140"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="220"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" Text="{Binding IdContract}" />
+                        <StackPanel Grid.Column="1" Orientation="Horizontal"
+                                    VerticalAlignment="Center">
+                            <TextBlock Text="Дата начала: "/>
+                            <TextBlock Text="{Binding DateOfCustody}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2" Orientation="Horizontal"
+                                    VerticalAlignment="Center">
+                            <TextBlock Text="Дата Конца: "/>
+                            <TextBlock Text="{Binding DateOfEnd}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="3" Orientation="Horizontal"
+                                    VerticalAlignment="Center">
+                            <TextBlock Text="Цена: "/>
+                            <TextBlock Text="{Binding Price}"/>
+                        </StackPanel>
+                        
+                        <TextBlock Grid.Column="4" Text="{Binding Status}" TextWrapping="Wrap"/>
+
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</UserControl>

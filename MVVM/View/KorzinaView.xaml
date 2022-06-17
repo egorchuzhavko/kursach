@@ -1,0 +1,98 @@
+﻿<UserControl x:Class="project.MVVM.View.KorzinaView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:project.MVVM.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             Background="Transparent">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+
+            <Button Width="130" Height="45" Content="Оформить аренду"
+                    Background="#00BFFF" BorderBrush="Black"
+                    BorderThickness="1" Name="OformZakaz" Foreground="White"
+                    Margin="40 0 0 0" Click="OformZakaz_Click"
+                    Style="{StaticResource ButControl}"/>
+            
+            <Button Width="130" Height="45" Content="Очистить корзину"
+                    Background="#00BFFF" BorderBrush="Black"
+                    BorderThickness="1" Name="ClearBasket" Foreground="White"
+                    Margin="25 0 0 0" Click="ClearBasket_Click"
+                    Style="{StaticResource ButControl}"/>
+
+            <Button Width="130" Height="45" Content="Удалить из корзины"
+                    Background="#00BFFF" BorderBrush="Black" Foreground="White"
+                    BorderThickness="1" Name="ClearItemsFromBasket"
+                    Margin="25 0 0 0" Click="ClearItemsFromBasket_Click"
+                    Style="{StaticResource ButControl}"/>
+
+            <ComboBox Width="190" Height="27"
+                      Margin="25 0 0 0" Name="ComboMode"
+                      HorizontalContentAlignment="Center"
+                      VerticalContentAlignment="Center"
+                      BorderBrush="#00BFFF">
+                <ComboBoxItem Name="OdVib" Content="Одиночный выбор" 
+                              Background="#00BFFF"
+                              Selected="OdVib_Selected"/>
+                <ComboBoxItem Name="MonVib" Content="Множественный выбор" 
+                              Background="#00BFFF"
+                              Selected="MonVib_Selected"/>
+            </ComboBox>
+        </StackPanel>
+
+
+        <ListView Grid.Row="1" Name="BasketList" Background="Transparent"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                  HorizontalAlignment="Center"
+                  BorderThickness="0" SelectionMode="Multiple"
+                  MouseDoubleClick="ListViewStuf_MouseDoubleClick">
+
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" 
+                               HorizontalAlignment="Center"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="20" Width="150">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="170" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+
+                        <Image Height="150" Width="150" Grid.Row="1" Stretch="UniformToFill"
+                               HorizontalAlignment="Center" Margin="5">
+                            <Image.Source>
+                                <Binding Path="Imagesource">
+                                    <Binding.TargetNullValue>
+                                        <ImageSource>/Images/sobaka.jpg</ImageSource>
+                                    </Binding.TargetNullValue>
+                                </Binding>
+                            </Image.Source>
+                        </Image>
+                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center" 
+                                   TextAlignment="Center"
+                                   Width="150" TextWrapping="Wrap" 
+                                   HorizontalAlignment="Center" FontSize="11"
+                                   FontWeight="Bold"/>
+                        <TextBlock Text="{Binding Price, StringFormat={}{0:0} руб/сутки}" Grid.Row="2" Margin="5 5 5 15" 
+                                   FontWeight="Bold"
+                                   HorizontalAlignment="Center" FontSize="11"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </Grid>
+</UserControl>

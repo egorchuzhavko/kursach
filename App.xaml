@@ -1,0 +1,49 @@
+﻿<Application x:Class="project.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:project"
+             xmlns:ViewModel="clr-namespace:project.MVVM.ViewModel"
+             xmlns:View="clr-namespace:project.MVVM.View"
+             StartupUri="StartWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Theme/MenuTheme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate DataType="{x:Type ViewModel:StafViewModel}">
+                <View:StafView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type ViewModel:ItemViewModel}">
+                <View:StafView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type ViewModel:BasketViewModel}">
+                <View:KorzinaView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type ViewModel:ItemsInRentViewModel}">
+                <View:ItemsInRentView/>
+            </DataTemplate>
+
+
+
+
+            <DataTemplate DataType="{x:Type ViewModel:StatisticsViewModel}">
+                <View:StatisticsView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type ViewModel:AdminItemViewModel}">
+                <View:ItemView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type ViewModel:UserViewModel}">
+                <View:UserView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type ViewModel:ContractViewModel}">
+                <View:ContractView/>
+            </DataTemplate>
+
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

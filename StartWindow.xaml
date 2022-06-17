@@ -1,0 +1,156 @@
+﻿<Window x:Class="project.StartWindow"
+        
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:project"
+        mc:Ignorable="d"
+         Height="420" Width="450"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation From="#00BFFF" To="#00dcff"
+                                    Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" 
+                                    Duration="0:0:0.2"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation From="#00dcff" To="#00BFFF"
+                                    Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" 
+                                    Duration="0:0:0.2"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
+            </Style.Triggers>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="25" BorderBrush="Black" BorderThickness="1"
+                                Background="{TemplateBinding Background}">
+
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="TextBox">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation From="#0096ff" To="#00b4ff"
+                                    Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" 
+                                    Duration="0:0:0.2"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation From="#00b4ff" To="#0096ff"
+                                    Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" 
+                                    Duration="0:0:0.2"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
+            </Style.Triggers>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border x:Name="border" CornerRadius="20"
+                            BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Border Background="#E6E6FA" BorderThickness="1" BorderBrush="Black" CornerRadius="20"
+            MouseDown="Border_MouseDown">
+        <Canvas>
+
+            <Button Background="#c80000" Grid.Column="2" 
+                    Width="20" Height="20" Canvas.Right="0"
+                    Click="Button_Click"
+                    Margin="0 10 10 0"
+                    Style="{StaticResource ExitButtonTh}">
+                <Button.ToolTip>
+                    Выход из программы
+                </Button.ToolTip>
+            </Button>
+
+            <!--Стартовые кнопки-->
+            <Button Foreground="White" Visibility="Visible" Name="Authorization" Background="#00BFFF" Width="250" Height="50" Canvas.Left="100" Canvas.Top="100" FontFamily="Calibri" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Click="Authorization_Click">
+
+                Авторизация
+            </Button>
+            <Button Foreground="White" Visibility="Visible" Name="Registration" Background="#00BFFF" Width="250" Height="50" Canvas.Left="100" Canvas.Top="175" FontFamily="Calibri" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="14" Click="Registration_Click">
+                Регистрация
+            </Button>
+            <Button Foreground="White" Visibility="Visible" Name="Admin" Background="#00BFFF" Width="250" Height="50" Canvas.Left="100" Canvas.Top="250" FontFamily="Calibri" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="14" Click="Admin_Click">
+                Администратор
+            </Button>
+
+            <!--Авторизация-->
+            <TextBox Name="AvtorizeLogin" Visibility="Hidden" Foreground="White" BorderBrush="Black" HorizontalContentAlignment="Center" Background="#0096ff" VerticalContentAlignment="Center" Height="40" Width="180" Canvas.Left="135" Canvas.Top="110" Text="Введите логин" HorizontalAlignment="Left" VerticalAlignment="Center" GotFocus="ClearBox"/>
+            <TextBox Name="AvtorizePassword" Visibility="Hidden" Foreground="White" BorderBrush="Black" HorizontalContentAlignment="Center" Background="#0096ff" VerticalContentAlignment="Center" Height="40" Width="180" Canvas.Left="135" Canvas.Top="170" Text="Введите пароль" HorizontalAlignment="Left" VerticalAlignment="Top" GotFocus="ClearBox"/>
+            <Button Name="Authorize" Visibility="Hidden" Foreground="White" Background="#00BFFF" Width="250" Height="50" Canvas.Left="100" Canvas.Top="230" FontFamily="Calibri" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="14" Content="Вход" Click="Authorize_Click"/>
+            <Button Name="BackFromAuthorize" Visibility="Hidden" Foreground="White" Background="#00BFFF" Width="250" Height="50" Canvas.Left="100" Canvas.Top="290" FontFamily="Calibri" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="14" Content="Назад" Click="BackFromAuthorize_Click"/>
+
+            <!--Регистрация-->
+            <TextBox Name="FIO" Visibility="Hidden" Foreground="White" BorderBrush="Black" HorizontalContentAlignment="Center" Background="#0096ff" VerticalContentAlignment="Center" Height="40" Width="300" Canvas.Left="75" Canvas.Top="20" Text="Ваше ФИО" HorizontalAlignment="Left" VerticalAlignment="Center" GotFocus="ClearBox"/>
+            <DatePicker Name="BirthD" Width="200" Canvas.Left="10" Canvas.Top="160"
+                        Text="Ваша дата рождения" Visibility="Hidden"/>
+            <TextBox Name="Adress" Visibility="Hidden" Foreground="White" BorderBrush="Black" HorizontalContentAlignment="Center" Background="#0096ff" VerticalContentAlignment="Center" Height="40" Width="300" Canvas.Left="75" Canvas.Top="90" Text="Ваш адрес проживания" HorizontalAlignment="Center" VerticalAlignment="Top" GotFocus="ClearBox"/>
+            <TextBox Name="PhoneNumber" Visibility="Hidden" Foreground="White" BorderBrush="Black" HorizontalContentAlignment="Center" Background="#0096ff" VerticalContentAlignment="Center" Height="40" Width="200" Canvas.Left="10" Canvas.Top="220" Text="Номер телефона" HorizontalAlignment="Center" VerticalAlignment="Top" GotFocus="ClearBox"/>
+            <TextBox Name="PassportNumber" Visibility="Hidden" Foreground="White" BorderBrush="Black" HorizontalContentAlignment="Center" Background="#0096ff" VerticalContentAlignment="Center" Height="40" Width="200" Canvas.Left="10" Canvas.Top="280" Text="Номер паспорта" HorizontalAlignment="Left" VerticalAlignment="Center" GotFocus="ClearBox"/>
+            <TextBox Name="OrganVidachi" Visibility="Hidden" Foreground="White" BorderBrush="Black" HorizontalContentAlignment="Center" Background="#0096ff" VerticalContentAlignment="Center" Height="40" Width="200" Canvas.Left="10" Canvas.Top="340" Text="Орган выдачи паспорта" HorizontalAlignment="Left" VerticalAlignment="Center" GotFocus="ClearBox"/>
+            <TextBox Name="Login" Visibility="Hidden" Foreground="White" BorderBrush="Black" HorizontalContentAlignment="Center" Background="#0096ff" VerticalContentAlignment="Center" Height="40" Width="200" Canvas.Right="20" Canvas.Top="160" Text="Логин" HorizontalAlignment="Center" VerticalAlignment="Top" GotFocus="ClearBox"/>
+            <TextBox Name="Password" Visibility="Hidden" Foreground="White" BorderBrush="Black" HorizontalContentAlignment="Center" Background="#0096ff" VerticalContentAlignment="Center" Height="40" Width="200" Canvas.Right="20" Canvas.Top="220" Text="Пароль" HorizontalAlignment="Center" VerticalAlignment="Top" GotFocus="ClearBox"/>
+            <Button Name="SignUp" Visibility="Hidden" Foreground="White" Background="#00BFFF" Width="200" Height="50" Canvas.Right="20" Canvas.Bottom="50" FontFamily="Calibri" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="14" Content="Зарегистрироваться" Canvas.Top="275" Click="SignUp_Click"/>
+            <Button Name="BackFromReg" Visibility="Hidden" Foreground="White" Background="#00BFFF" Width="200" Height="50" Canvas.Right="20" Canvas.Bottom="50" FontFamily="Calibri" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="14" Content="Назад" Canvas.Top="335" Click="BackFromReg_Click"/>
+            
+            <!--Админ вход-->
+            <TextBox Name="AdminLogin" Visibility="Hidden" Foreground="White" 
+                     BorderBrush="Black" HorizontalContentAlignment="Center" 
+                     Background="#0096ff" VerticalContentAlignment="Center" 
+                     Height="40" Width="250" Canvas.Right="100" Canvas.Top="100" 
+                     Text="Введите логин" HorizontalAlignment="Center" VerticalAlignment="Top" 
+                     GotFocus="ClearBox"/>
+            <TextBox Name="AdminPassword" Visibility="Hidden" Foreground="White" 
+                     BorderBrush="Black" HorizontalContentAlignment="Center" 
+                     Background="#0096ff" VerticalContentAlignment="Center" 
+                     Height="40" Width="250" Canvas.Right="100" Canvas.Top="175" 
+                     Text="Введите пароль" HorizontalAlignment="Center" VerticalAlignment="Top" 
+                     GotFocus="ClearBox"/>
+            <Button Name="AdminAvtorize" Visibility="Hidden" Foreground="White" Background="#00BFFF" Width="250" 
+                    Height="50" Canvas.Right="100" Canvas.Bottom="50" FontFamily="Calibri" 
+                    HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="14" Content="Зарегистрироваться" 
+                    Canvas.Top="250" Click="AdminAvtorize_Click"/>
+            <Button Name="BackFromAdmin" Visibility="Hidden" Foreground="White" Background="#00BFFF" Width="150" 
+                    Height="50" Canvas.Right="150" Canvas.Bottom="50" FontFamily="Calibri" 
+                    HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="14" Content="Назад" 
+                    Canvas.Top="320" Click="BackFromAdmin_Click"/>
+        </Canvas>
+    </Border>
+</Window>
