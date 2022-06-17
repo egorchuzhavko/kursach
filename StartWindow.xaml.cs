@@ -139,6 +139,7 @@ namespace project
             Password.Visibility = Visibility.Visible;
             SignUp.Visibility = Visibility.Visible;
             BackFromReg.Visibility = Visibility.Visible;
+            // Arigato Godzaimasu
         }
 
         private void BackFromAuthorize_Click(object sender, RoutedEventArgs e)//Назад из авторизации
